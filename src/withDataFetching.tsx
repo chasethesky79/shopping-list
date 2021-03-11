@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
-import { IDataSourceProps, IListComponentProps as IListComponentState, IShoppingListItem } from "./models/shopping-list-models";
+import { IDataSourceProps, IListComponentProps, IShoppingListItem } from "./models/shopping-list-models";
 
-export const withDataFetching = (props: IDataSourceProps, WrappedComponent: React.FC<IListComponentState>) => {
+export const withDataFetching = (props: IDataSourceProps, WrappedComponent: React.FC<IListComponentProps>) => {
     return  () => {
-        const initialItemsState: IListComponentState = {
+        const initialProducts: IListComponentProps = {
             data: [],
             loading: true,
             error: ''
         }
-        const [listItems, setListItems] = useState(initialItemsState);
-        const { data, error, loading } = listItems;
+        const [listItems, setListItems] = useState(initialProducts);
         useEffect(() => {
             async function fetchData() {
             try {
@@ -17,11 +16,11 @@ export const withDataFetching = (props: IDataSourceProps, WrappedComponent: Reac
                 const result = await fetch(dataSource);
                 let data: IShoppingListItem[] = await result.json();
                 if (data) {
-                    setListItems({...initialItemsState, data, loading: false })
+                    setListItems({...initialProducts, data, loading: false })
                 }
             } catch(error) {
                 const { message } = error;
-                setListItems({...initialItemsState, error: message })
+                setListItems({...initialProducts, error: message })
             }
          } fetchData();     
          }, []);

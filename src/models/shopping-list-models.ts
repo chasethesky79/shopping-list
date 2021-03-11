@@ -8,12 +8,13 @@ export interface IShoppingListItem {
 }
 
 export type IErrorInfo = {
-    loading: boolean;
-    error: string;
+    loading?: boolean;
+    error?: string;
 }
-
-export type IListComponentProps = IErrorInfo & { data: IShoppingListItem[] }
 
 export interface IItemsListContext {
     data: IShoppingListItem[]
 }
+
+export type IListComponentProps = IErrorInfo & IItemsListContext
+
