@@ -11,5 +11,5 @@ const ListsContextProvider: React.FC<IListComponentProps> = ({ children, data })
     </ListsContext.Provider>
 );
 
-export default withDataFetching({ dataSource: LISTS_DATA_SOURCE }, ListsContextProvider);
+export default ListsContextProvider;
 

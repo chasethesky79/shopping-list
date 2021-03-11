@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { IDataSourceProps, IListComponentProps, IShoppingListItem } from "./models/shopping-list-models";
 
-export const withDataFetching = (props: IDataSourceProps, WrappedComponent: React.FC<IListComponentProps>) => {
+export const withDataFetching = (dataSourceProps: IDataSourceProps, WrappedComponent: React.FC<IListComponentProps>) => {
     return  () => {
         const initialProducts: IListComponentProps = {
             data: [],
@@ -12,7 +12,7 @@ export const withDataFetching = (props: IDataSourceProps, WrappedComponent: Reac
         useEffect(() => {
             async function fetchData() {
             try {
-                const { dataSource } = props;
+                const { dataSource } = dataSourceProps;
                 const result = await fetch(dataSource);
                 let data: IShoppingListItem[] = await result.json();
                 if (data) {
