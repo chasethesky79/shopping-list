@@ -1,0 +1,22 @@
+.header-link {
+color: #fff;
+text-decoration: none;
+padding: 5px;
+margin-left: 7px;
+}
+
+.header-link-active {
+    border-bottom: blue solid 2px;
+}
+
+.products-link {
+    display: flex;
+    justify-content: center;
+}
+
+.search-container {
+    text-align: right;
+    margin-bottom: -25px;
+    display: flex;
+    justify-content: flex-end;
+}

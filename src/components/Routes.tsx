@@ -41,7 +41,7 @@ const Routes: React.FC<{}> = () => {
         <Router>
             <div>
                 <HeaderWrapper><Title>Personal Shopping List</Title></HeaderWrapper>
-                <ListsContextProvider data={data}>
+                <ListsContextProvider {...listItems}>
                     <Switch>
                         <Route exact path='/' component={Lists}/>
                     </Switch>

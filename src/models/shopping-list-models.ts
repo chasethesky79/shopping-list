@@ -12,11 +12,11 @@ export type IErrorInfo = {
     error?: string;
 }
 
-export interface IItemsListContext {
-    data: IShoppingListItem[]
+interface IItemsListContext {
+    
 }
 
-export type IListComponentProps = IErrorInfo & IItemsListContext
+export type IListComponentProps = IErrorInfo & IItemsListContext & { data: IShoppingListItem[] }
 
 export interface ISubHeaderProps {
     title: string;
