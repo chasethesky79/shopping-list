@@ -18,3 +18,9 @@ export interface IItemsListContext {
 
 export type IListComponentProps = IErrorInfo & IItemsListContext
 
+export interface ISubHeaderProps {
+    title: string;
+    openForm?: () => void;
+    goBack?: () => void
+}
+
