@@ -6,7 +6,10 @@ export type IDataSourceProps = {
 
 export interface IShoppingListItem {
     id: number;
+    listId: number;
     title: string;
+    quantity: number;
+    price: number
 }
 
 export type IErrorInfo = {
@@ -14,12 +17,14 @@ export type IErrorInfo = {
     error?: string;
 }
 
-export type IList = {
-  items: IShoppingListItem[];
-  id: number;
-  title: string;
+export type IItemsComponentProps = {
+    items: IShoppingListItem[]
 }
 
+export type IList = {
+  id: number;
+  title: string;
+} & IItemsComponentProps
 
 export type IListsComponentProps = IErrorInfo & { lists: IList[] }
 export type IDetailsPageProps = RouteComponentProps<{ id: string }>
