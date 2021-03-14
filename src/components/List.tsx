@@ -9,12 +9,13 @@ import { IDetailsPageProps, IShoppingListItem } from "../models/shopping-list-mo
 
 const List: React.FC<IDetailsPageProps> = props => {
     const { lists, loading, error } = useContext(ListsContext);
-    const {  match: { params: { id } }, history } = props;
-    const list = lists.find(item => item.id === Number(id));
-    const items = list ? list.items : [];
+    const { match, history } = props;
+    const { params: { id }} = match;
+    const list = lists.find(item => item.id === Number(id)) || { id: 0, title: '', items: []};
+    const { items } = list;
     return (
        <PageContainer>
-          { history && <SubHeader title='Your Items' goBack = {() => history.goBack()} openForm={() => history.push('/newItem')}/>}
+          { history && <SubHeader title={list.title} goBack = {() => history.goBack()} openForm={() => history.push(match.url.concat('/newItem'))}/>}
           {( loading || error ) && <Alert>{loading ? 'Loading...' : error}</Alert> }
           <NoListStyleWrapper>
              { items && items.map((item: IShoppingListItem) => 
