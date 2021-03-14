@@ -8,16 +8,16 @@ import { NavLink } from 'react-router-dom';
 import '../styles/Header.css';
 
 const Lists: React.FC<RouteComponentProps> = props => {
-   const { data, loading, error } = useContext(ListsContext);
-   const { match, history } = props;
+   const { lists, loading, error } = useContext(ListsContext);
+   const {  history } = props;
    return (
       <PageContainer>
-         { history && <SubHeader title='Your Lists' goBack = {() => history.goBack()} openForm={() => history.push('/new')}/>}
+         { history && <SubHeader title='Your Lists' goBack = {() => history.goBack()}/>}
          {( loading || error ) && <Alert>{loading ? 'Loading...' : error}</Alert> }
          <NoListStyleWrapper>
-            { data && data.map(item => 
-               <HorizontalListElementWrapper>
-                  <NavLink key={item.id} activeClassName='header-link-active' to={`/list/${item.id}`}><Title>{item.title}</Title></NavLink>
+            { lists && lists.map(list => 
+               <HorizontalListElementWrapper key={list.id}>
+                  <NavLink activeClassName='header-link-active' to={`/list/${list.id}`}><Title>{list.title}</Title></NavLink>
                </HorizontalListElementWrapper>)}
          </NoListStyleWrapper>
      </PageContainer>

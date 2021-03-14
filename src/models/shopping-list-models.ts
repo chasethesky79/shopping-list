@@ -1,3 +1,5 @@
+import { RouteComponentProps } from "react-router-dom"
+
 export type IDataSourceProps = {
     dataSource: string
 }
@@ -12,11 +14,15 @@ export type IErrorInfo = {
     error?: string;
 }
 
-interface IItemsListContext {
-    
+export type IList = {
+  items: IShoppingListItem[];
+  id: number;
+  title: string;
 }
 
-export type IListComponentProps = IErrorInfo & IItemsListContext & { data: IShoppingListItem[] }
+
+export type IListsComponentProps = IErrorInfo & { lists: IList[] }
+export type IDetailsPageProps = RouteComponentProps<{ id: string }>
 
 export interface ISubHeaderProps {
     title: string;

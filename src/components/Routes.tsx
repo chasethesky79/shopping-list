@@ -3,9 +3,10 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components'
 import ListsContextProvider from '../Context/ListContextProvider';
-import { IListComponentProps, IShoppingListItem } from '../models/shopping-list-models';
+import { IList, IListsComponentProps } from '../models/shopping-list-models';
 import Lists from './Lists';
 import { Title } from '../styled-components/styled-components';
+import List from './List';
 
 const LISTS_DATA_SOURCE = 'https://my-json-server.typicode.com/PacktPublishing/React-Projects/lists';
 const HeaderWrapper = styled.header`
@@ -16,24 +17,23 @@ const HeaderWrapper = styled.header`
     color: white;
 `
 const Routes: React.FC<{}> = () => {
-    const initialProducts: IListComponentProps = {
-        data: [],
+    const initialListsState: IListsComponentProps = {
+        lists: [],
         loading: true,
         error: ''
     }
-    const [listItems, setListItems] = useState(initialProducts);
-    const { data } = listItems;
+    const [lists, setLists] = useState(initialListsState);
     useEffect(() => {
         async function fetchData() {
         try {
             const result = await fetch(LISTS_DATA_SOURCE);
-            let data: IShoppingListItem[] = await result.json();
-            if (data) {
-                setListItems({...initialProducts, data, loading: false })
+            let lists: IList[] = await result.json();
+            if (lists) {
+                setLists({...initialListsState, lists, loading: false })
             }
         } catch(error) {
             const { message } = error;
-            setListItems({...initialProducts, error: message })
+            setLists({...initialListsState, error: message })
         }
      } fetchData();     
      }, []);
@@ -41,9 +41,10 @@ const Routes: React.FC<{}> = () => {
         <Router>
             <div>
                 <HeaderWrapper><Title>Personal Shopping List</Title></HeaderWrapper>
-                <ListsContextProvider {...listItems}>
+                <ListsContextProvider {...lists}>
                     <Switch>
                         <Route exact path='/' component={Lists}/>
+                        <Route path='/list/:id' component={List}/>
                     </Switch>
                 </ListsContextProvider>
             </div>
