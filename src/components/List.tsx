@@ -7,6 +7,12 @@ import { NavLink } from 'react-router-dom';
 import '../styles/Header.css';
 import { IDetailsPageProps, IShoppingListItem } from "../models/shopping-list-models";
 import { ItemsContext } from "../Context/ItemsContextProvider";
+import NumberFormat from "react-number-format";
+import styled from "styled-components";
+
+const NavLinkWrapper = styled(NavLink)`
+  color: black;
+`
 
 const List: React.FC<IDetailsPageProps> = props => {
     const { items } = useContext(ItemsContext);
@@ -22,7 +28,10 @@ const List: React.FC<IDetailsPageProps> = props => {
           <NoListStyleWrapper>
              { data && data.map((item: IShoppingListItem) => 
                 <HorizontalListElementWrapper key={item.id}>
-                   <NavLink to={`/list/${item.id}`}><Title>{item.title}</Title></NavLink>
+                   <NavLinkWrapper to={`/list/${item.id}`}><Title>{item.title}</Title></NavLinkWrapper><Title>Quantity: {item.quantity}</Title>
+                   <Title>
+                     <NumberFormat value={item.price} displayType={'text'} thousandSeparator={true} prefix={'$'}/>
+                   </Title>
                 </HorizontalListElementWrapper>)}
           </NoListStyleWrapper>
       </PageContainer>

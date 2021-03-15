@@ -15,7 +15,7 @@ const ITEMS_DATA_SOURCE = 'https://my-json-server.typicode.com/PacktPublishing/R
 const HeaderWrapper = styled.header`
     text-align: center;
     background-color: #222;
-    max-height: 70px;
+    max-height: 90px;
     padding: 20px;
     color: white;
 `
