@@ -17,16 +17,16 @@ export type IErrorInfo = {
     error?: string;
 }
 
-export type IItemsComponentProps = {
+export type IItemsComponentState = {
     items: IShoppingListItem[]
-}
+} & IErrorInfo
 
 export type IList = {
   id: number;
   title: string;
-} & IItemsComponentProps
+} & IItemsComponentState
 
-export type IListsComponentProps = IErrorInfo & { lists: IList[] }
+export type IListsComponentState = IErrorInfo & { lists: IList[] }
 export type IDetailsPageProps = RouteComponentProps<{ id: string }>
 
 export interface ISubHeaderProps {
