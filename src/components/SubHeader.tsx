@@ -5,8 +5,8 @@ import { Title } from '../styled-components/styled-components';
 
 const SubHeaderWrapper = styled.div`
 display: flex;
-justify-content: space-between;
 width: 100%;
+justify-content: space-between;
 background: lightGray;
 `
 const ButtonWrapper = styled(Button)`
