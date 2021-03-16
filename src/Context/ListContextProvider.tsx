@@ -17,7 +17,7 @@ const ListsContextProvider: React.FC<{}> = ({ children }) => {
   });
   return (
     <ListsContext.Provider value={{ ...listsResult }}>
-      {children}
+        {children}
     </ListsContext.Provider>
   )
 }

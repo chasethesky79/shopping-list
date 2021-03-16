@@ -17,7 +17,7 @@ const ItemsContextProvider: React.FC<{}> = ({ children }) => {
     });
     return (
         <ItemsContext.Provider value={{ items, loading, error }}>
-        {children}
+            {children}
         </ItemsContext.Provider>
     )
 }
