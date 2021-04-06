@@ -26,12 +26,16 @@ export type IList = {
   title: string;
 } & IItemsComponentState
 
-export type IListsComponentState = IErrorInfo & { lists: IList[] }
+export type IListsComponentState = IErrorInfo & { lists: IList[]; getListsRequest: () => void }
 export type IDetailsPageProps = RouteComponentProps<{ id: string }>
 
 export interface ISubHeaderProps {
     title: string;
     openForm?: () => void;
     goBack?: () => void
+}
+
+export type Action = {
+ type: string
 }
 
