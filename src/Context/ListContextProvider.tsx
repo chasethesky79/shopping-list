@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Action, IErrorInfo, IList, IListsComponentState } from "../models/shopping-list-models";
+import React from "react";
+import { IListsComponentState } from "../models/shopping-list-models";
 import { listsReducer } from "../reducers/lists-reducer";
 import { fetchData } from '../utils/data-utils'
 

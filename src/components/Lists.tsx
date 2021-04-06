@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ListsContext } from '../Context/ListContextProvider';
 import * as React from 'react';
 import { RouteComponentProps } from "react-router-dom";
@@ -8,8 +8,13 @@ import { NavLink } from 'react-router-dom';
 import '../styles/Header.css';
 
 const Lists: React.FC<RouteComponentProps> = props => {
-   const { lists, loading, error } = useContext(ListsContext);
+   const { lists, loading, error, getListsRequest } = useContext(ListsContext);
    const {  history } = props;
+   useEffect(() => {
+         if (!lists || lists.length <= 0 ) {
+            getListsRequest();
+         }     
+      }, [lists, getListsRequest]);
    return (
       <PageContainer>
          { history && <SubHeader title='Your Lists' goBack = {() => history.goBack()}/>}
