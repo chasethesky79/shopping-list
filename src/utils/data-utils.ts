@@ -3,7 +3,7 @@ import { IItemsComponentState, IListsComponentState } from '../models/shopping-l
 export const fetchData = async (dataSource: string): Promise<IListsComponentState | IItemsComponentState> => {
     const listsDataSource = dataSource.includes('lists');
     let listsState: IListsComponentState | IItemsComponentState = listsDataSource ? { lists: [], loading: true, error: '', getListsRequest: () => {} } : 
-       { items: [], loading: true, error: '' };
+       { items: [], loading: true, error: '', getItemsRequest: () => {} };
     try {
         const result = await fetch(dataSource);
         const data = await result.json();

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ListsContext } from '../Context/ListContextProvider';
 import * as React from 'react';
 import SubHeader from "./SubHeader";
@@ -15,10 +15,18 @@ const NavLinkWrapper = styled(NavLink)`
 `
 
 const List: React.FC<IDetailsPageProps> = props => {
-    const { items } = useContext(ItemsContext);
-    const { lists, loading, error } = useContext(ListsContext);
+    const { items, getItemsRequest } = useContext(ItemsContext);
+    const { lists, loading, error,getListsRequest } = useContext(ListsContext);
     const { match, history } = props;
     const { params: { id }} = match;
+    useEffect(() => {
+      if (!lists || lists.length <= 0) {
+         getListsRequest();
+      }
+      if (!items || items.length <= 0) {
+         getItemsRequest();
+      }
+    }, [items, getItemsRequest, lists, getListsRequest])
     const data = items ? items.filter(item => item.listId === Number(id)) : [];
     const list = lists.find(element => element.id === Number(id));
     return (

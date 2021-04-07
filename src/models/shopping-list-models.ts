@@ -18,7 +18,8 @@ export type IErrorInfo = {
 }
 
 export type IItemsComponentState = {
-    items: IShoppingListItem[]
+    items: IShoppingListItem[];
+    getItemsRequest: () => void
 } & IErrorInfo
 
 export type IList = {
